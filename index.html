@@ -23,7 +23,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* پس‌زمینه کامل و بدون هیچ حاشیه طوسی */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -176,45 +175,27 @@
             mix-blend-mode: lighten;
         }
 
-        /* ۱. انیمیشن فضانورد (راه رفتن و جلو آمدن بدون رسیدن) */
+        /* انیمیشن فضانورد */
         .home-categories .category-card:first-child .category-icon-img {
             animation: astronautWalk 3.5s ease-in-out infinite alternate;
         }
 
         @keyframes astronautWalk {
-            0% {
-                transform: scale(0.85) translateY(10px) rotate(-2deg);
-            }
-            50% {
-                transform: scale(1.05) translateY(-5px) rotate(2deg);
-            }
-            100% {
-                transform: scale(1.25) translateY(-15px) rotate(-1deg);
-            }
+            0% { transform: scale(0.85) translateY(10px) rotate(-2deg); }
+            50% { transform: scale(1.05) translateY(-5px) rotate(2deg); }
+            100% { transform: scale(1.25) translateY(-15px) rotate(-1deg); }
         }
 
-        /* ۲. انیمیشن دسته بازی (تکون خوردن چپ و راست + افکت کلیک دکمه) */
+        /* انیمیشن دسته بازی */
         .home-categories .category-card:last-child .category-icon-img {
             animation: controllerMotion 2.5s ease-in-out infinite alternate;
         }
 
         @keyframes controllerMotion {
-            0% {
-                transform: translateX(-15px) rotate(-6deg) scale(0.95);
-                filter: brightness(1);
-            }
-            33% {
-                transform: translateX(0px) rotate(0deg) scale(1);
-                filter: brightness(1.25) drop-shadow(0 0 10px rgba(56, 189, 248, 0.7));
-            }
-            66% {
-                transform: translateX(15px) rotate(6deg) scale(0.95);
-                filter: brightness(1);
-            }
-            100% {
-                transform: translateX(0px) rotate(-3deg) scale(1.05);
-                filter: brightness(1.35) drop-shadow(0 0 14px rgba(56, 189, 248, 0.9));
-            }
+            0% { transform: translateX(-15px) rotate(-6deg) scale(0.95); filter: brightness(1); }
+            33% { transform: translateX(0px) rotate(0deg) scale(1); filter: brightness(1.25) drop-shadow(0 0 10px rgba(56, 189, 248, 0.7)); }
+            66% { transform: translateX(15px) rotate(6deg) scale(0.95); filter: brightness(1); }
+            100% { transform: translateX(0px) rotate(-3deg) scale(1.05); filter: brightness(1.35) drop-shadow(0 0 14px rgba(56, 189, 248, 0.9)); }
         }
 
         .title-icon-img {
@@ -315,6 +296,100 @@
             background-color: var(--accent-hover);
         }
 
+        /* استایل‌های اختصاصی صفحه جزییات بازی Indika */
+        .detail-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .detail-title {
+            font-size: 1.6rem;
+            color: var(--accent-color);
+        }
+
+        .back-link {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text-color);
+            border-color: var(--accent-color);
+        }
+
+        .purchase-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            padding: 1.2rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .purchase-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--success-color);
+        }
+
+        .purchase-btn {
+            background-color: var(--success-color);
+            color: #0f172a;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .purchase-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.03);
+            border-color: var(--accent-color);
+        }
+
         .page-section {
             display: none;
         }
@@ -385,6 +460,20 @@
                 جدیدترین زیرنویس‌ها
             </h2>
             <div class="games-grid" id="subtitlesGrid">
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture800_cohk.png');">
+                        <span class="badge">جدید</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Indika (اینیدیکا)</h3>
+                        <p class="game-desc">زیرنویس و فارسی‌ساز اختصاصی بازی داستان‌محور و متفاوت اینیدیکا.</p>
+                        <div class="price-row">
+                            <span class="price">فارسی‌ساز</span>
+                            <button class="buy-btn" onclick="showSection('indika-detail')">مشاهده</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="game-card">
                     <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture3_v9qb.png');">
                         <span class="badge">پیش‌خرید</span>
@@ -506,6 +595,29 @@
                 </div>
             </div>
         </section>
+
+        <section id="indika-detail" class="page-section">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h2 class="detail-title">زیرنویس فارسی بازی Indika (اینیدیکا)</h2>
+                    <button class="back-link" onclick="showSection('subtitles')">← بازگشت به زیرنویس‌ها</button>
+                </div>
+
+                <div class="purchase-box">
+                    <div class="purchase-price">قیمت: ۸۵,۰۰۰ تومان</div>
+                    <button class="purchase-btn" onclick="alert('انتقال به درگاه پرداخت برای خرید زیرنویس Indika...')">خرید</button>
+                </div>
+
+                <h3 class="sub-group-title">تصاویری از نمای بازی با زیرنویس اختصاصی</h3>
+                <div class="gallery-grid">
+                    <img src="https://s6.uupload.ir/files/img_20260826_104920_470_4bhb.jpg" alt="Indika Gameplay 1" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/img_20260826_104920_650_xc35.jpg" alt="Indika Gameplay 2" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/img_20260826_104920_950_4wec.jpg" alt="Indika Gameplay 3" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/img_20260826_104920_960_g2mq.jpg" alt="Indika Gameplay 4" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/img_20260826_104921_136_zbhk.jpg" alt="Indika Gameplay 5" class="gallery-img">
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -523,6 +635,7 @@
 
             document.getElementById('searchInput').value = '';
             resetFilters();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function resetFilters() {
