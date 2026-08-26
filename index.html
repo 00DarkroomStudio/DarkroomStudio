@@ -2,12 +2,12 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DarkroomStudio - فروشگاه زیرنویس و فارسی‌ساز بازی‌ها</title>
     <style>
         :root {
             --bg-color: #0b0f19;
-            --card-bg: rgba(30, 41, 59, 0.75);
+            --card-bg: rgba(30, 41, 59, 0.85);
             --accent-color: #38bdf8;
             --accent-hover: #0284c7;
             --text-color: #f8fafc;
@@ -23,6 +23,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* پس‌زمینه ثابت و فیکس برای موبایل و کامپیوتر */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -31,43 +32,43 @@
             flex-direction: column;
             position: relative;
             overflow-x: hidden;
-            background-image: 
-                url('https://s6.uupload.ir/files/file_0000000014dc81f59064d4b1e683d2ed_p7ik.jpg'),
-                url('https://s6.uupload.ir/files/file_00000000be1081f48a42eb974643b80b_1q5k.jpg');
-            background-repeat: no-repeat, no-repeat;
-            background-position: right top, left top;
-            background-size: 50% 100%, 50% 100%;
-            background-attachment: fixed, fixed;
+            background-image: url('https://s6.uupload.ir/files/file_0000000014dc81f59064d4b1e683d2ed_av5e.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
         }
 
         header {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
             z-index: 100;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .logo-title {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
             cursor: pointer;
         }
 
         .logo-img-icon {
-            height: 45px;
+            height: 38px;
             object-fit: contain;
             filter: brightness(1.2) drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));
             mix-blend-mode: screen;
         }
 
         .logo-img-title {
-            height: 40px;
+            height: 32px;
             object-fit: contain;
             filter: brightness(1.2);
             mix-blend-mode: screen;
@@ -75,17 +76,18 @@
 
         .nav-btns {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-btn {
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(30, 41, 59, 0.9);
             color: var(--text-color);
             border: 1px solid var(--border-color);
-            padding: 0.5rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
@@ -98,8 +100,8 @@
         }
 
         .search-bar {
-            width: 250px;
-            padding: 0.5rem 1rem;
+            width: 200px;
+            padding: 0.5rem 0.8rem;
             border-radius: 8px;
             border: 1px solid var(--border-color);
             background-color: rgba(15, 23, 42, 0.9);
@@ -116,14 +118,14 @@
 
         main {
             max-width: 1200px;
-            width: 90%;
+            width: 92%;
             margin: 2rem auto;
             flex-grow: 1;
             z-index: 10;
         }
 
         .section-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 1.5rem;
             border-right: 4px solid var(--accent-color);
             padding-right: 0.8rem;
@@ -133,7 +135,7 @@
         }
 
         .sub-group-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin: 2rem 0 1rem 0;
             color: var(--accent-color);
             display: flex;
@@ -143,8 +145,8 @@
 
         .home-categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
             margin-top: 1.5rem;
         }
 
@@ -153,7 +155,7 @@
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
             cursor: pointer;
             display: flex;
@@ -169,13 +171,12 @@
         }
 
         .category-icon-img {
-            max-width: 240px;
-            max-height: 150px;
+            max-width: 100%;
+            max-height: 140px;
             object-fit: contain;
             mix-blend-mode: lighten;
         }
 
-        /* انیمیشن فضانورد */
         .home-categories .category-card:first-child .category-icon-img {
             animation: astronautWalk 3.5s ease-in-out infinite alternate;
         }
@@ -186,7 +187,6 @@
             100% { transform: scale(1.25) translateY(-15px) rotate(-1deg); }
         }
 
-        /* انیمیشن دسته بازی */
         .home-categories .category-card:last-child .category-icon-img {
             animation: controllerMotion 2.5s ease-in-out infinite alternate;
         }
@@ -199,16 +199,16 @@
         }
 
         .title-icon-img {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             object-fit: contain;
             mix-blend-mode: lighten;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.2rem;
         }
 
         .game-card {
@@ -240,10 +240,10 @@
             left: 10px;
             background: var(--accent-color);
             color: #000;
-            padding: 0.25rem 0.6rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-weight: bold;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
 
         .game-info {
@@ -254,12 +254,12 @@
         }
 
         .game-title {
-            font-size: 1.05rem;
+            font-size: 1rem;
             margin-bottom: 0.4rem;
         }
 
         .game-desc {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 1rem;
             line-height: 1.4;
@@ -275,7 +275,7 @@
         }
 
         .price {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: bold;
             color: var(--success-color);
         }
@@ -284,10 +284,10 @@
             background-color: var(--accent-color);
             color: #0f172a;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.45rem 0.9rem;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: background-color 0.3s;
         }
@@ -296,13 +296,12 @@
             background-color: var(--accent-hover);
         }
 
-        /* استایل‌های اختصاصی صفحه جزییات بازی Indika */
         .detail-container {
             background: var(--card-bg);
             backdrop-filter: blur(15px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
 
@@ -310,13 +309,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .detail-title {
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             color: var(--accent-color);
         }
 
@@ -324,9 +325,10 @@
             background: transparent;
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 0.4rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 6px;
             cursor: pointer;
+            font-size: 0.85rem;
             transition: 0.2s;
         }
 
@@ -339,15 +341,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.7);
             border: 1px solid var(--border-color);
-            padding: 1.2rem 2rem;
+            padding: 1rem 1.5rem;
             border-radius: 12px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .purchase-price {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: var(--success-color);
         }
@@ -356,29 +358,29 @@
             background-color: var(--success-color);
             color: #0f172a;
             border: none;
-            padding: 0.7rem 2rem;
+            padding: 0.6rem 1.5rem;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: 0.2s;
         }
 
         .purchase-btn:hover {
             opacity: 0.9;
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.2rem;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
             margin-top: 1rem;
         }
 
         .gallery-img {
             width: 100%;
-            height: 180px;
+            height: 160px;
             object-fit: cover;
             border-radius: 10px;
             border: 1px solid var(--border-color);
@@ -402,9 +404,9 @@
             background: rgba(15, 23, 42, 0.95);
             border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.2rem;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-top: 3rem;
             z-index: 100;
         }
@@ -424,6 +426,7 @@
     </header>
 
     <main>
+        <!-- ۱. صفحه اصلی -->
         <section id="home" class="page-section active">
             <h2 class="section-title">به DarkroomStudio خوش آمدید</h2>
             <div class="home-categories">
@@ -436,6 +439,7 @@
             </div>
         </section>
 
+        <!-- ۲. نتایج جستجو -->
         <section id="search-results" class="page-section">
             <h2 class="section-title">نتایج جستجو</h2>
             
@@ -454,84 +458,106 @@
             <p id="noResults" style="display: none; color: var(--text-muted); margin-top: 1rem;">هیچ موردی مطابق با جستجوی شما پیدا نشد.</p>
         </section>
 
+        <!-- ۳. زیرنویس‌ها -->
         <section id="subtitles" class="page-section">
             <h2 class="section-title">
                 <img src="https://s6.uupload.ir/files/file_00000000067881f4a07eb7de12f6deda_yodh.jpg" alt="زیرنویس" class="title-icon-img">
                 جدیدترین زیرنویس‌ها
             </h2>
             <div class="games-grid" id="subtitlesGrid">
+                <!-- PHOTOMALY -->
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/img_20260826_105217_512_bz15.jpg');">
+                        <span class="badge">جدید</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">PHOTOMALY</h3>
+                        <p class="game-desc">پکیج کامل زیرنویس و فارسی‌ساز پروژه PHOTOMALY.</p>
+                        <div class="price-row">
+                            <span class="price">۴۰,۰۰۰ تومان</span>
+                            <button class="buy-btn" onclick="showSection('photomaly-detail')">مشاهده</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indika -->
                 <div class="game-card">
                     <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture800_cohk.png');">
-                        <span class="badge">جدید</span>
+                        <span class="badge">ویژه</span>
                     </div>
                     <div class="game-info">
                         <h3 class="game-title">Indika (اینیدیکا)</h3>
                         <p class="game-desc">زیرنویس و فارسی‌ساز اختصاصی بازی داستان‌محور و متفاوت اینیدیکا.</p>
                         <div class="price-row">
-                            <span class="price">فارسی‌ساز</span>
+                            <span class="price">۷۰,۰۰۰ تومان</span>
                             <button class="buy-btn" onclick="showSection('indika-detail')">مشاهده</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- YANDERE -->
                 <div class="game-card">
-                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture3_v9qb.png');">
-                        <span class="badge">پیش‌خرید</span>
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/img_20260826_105153_140_j6o.jpg');">
+                        <span class="badge">جدید</span>
                     </div>
                     <div class="game-info">
-                        <h3 class="game-title">GTA VI (جی تی ای ۶)</h3>
-                        <p class="game-desc">پیش‌خرید زیرنویس کامل بازی Grand Theft Auto VI همراه با ترجمه منوها و دیالوگ‌ها.</p>
+                        <h3 class="game-title">YANDERE</h3>
+                        <p class="game-desc">فارسی‌ساز و زیرنویس اختصاصی بازی یاندره.</p>
                         <div class="price-row">
-                            <span class="price">۱۵۰,۰۰۰ تومان</span>
-                            <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود زیرنویس</button>
+                            <span class="price">۸۰,۰۰۰ تومان</span>
+                            <button class="buy-btn" onclick="showSection('yandere-detail')">مشاهده</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- TREPANG2 (مورد اول) -->
                 <div class="game-card">
-                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture12_71u5.png');">
-                        <span class="badge">کامل</span>
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/img_20260826_122835_807_phyo.jpg');">
+                        <span class="badge">اکشن</span>
                     </div>
                     <div class="game-info">
-                        <h3 class="game-title">Minecraft (ماینکرفت)</h3>
-                        <p class="game-desc">فارسی‌ساز کامل آیتم‌ها، منوها و تمام بخش‌های بازی ماینکرفت.</p>
+                        <h3 class="game-title">TREPANG2</h3>
+                        <p class="game-desc">زیرنویس فارسی بازی هیجان‌انگیز و اکشن Trepang2.</p>
                         <div class="price-row">
-                            <span class="price">۴۵,۰۰۰ تومان</span>
-                            <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود زیرنویس</button>
+                            <span class="price">۱۰۰,۰۰۰ تومان</span>
+                            <button class="buy-btn" onclick="showSection('trepang2-1-detail')">مشاهده</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Song of horror -->
                 <div class="game-card">
-                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture5_4wvx.png');">
-                        <span class="badge">VIP</span>
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/img_20260826_122624_788_qse0.jpg');">
+                        <span class="badge">ترسناک</span>
                     </div>
                     <div class="game-info">
-                        <h3 class="game-title">Roblox (روبلاکس)</h3>
-                        <p class="game-desc">ترجمه و زیرنویس اختصاصی مپ‌های محبوب و پرطرفدار روبلاکس.</p>
+                        <h3 class="game-title">Song of horror</h3>
+                        <p class="game-desc">فارسی‌ساز بازی ترسناک و رازآلود Song of horror.</p>
                         <div class="price-row">
-                            <span class="price">۶۰,۰۰۰ تومان</span>
-                            <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود زیرنویس</button>
+                            <span class="price">۱۰۰,۰۰۰ تومان</span>
+                            <button class="buy-btn" onclick="showSection('song-of-horror-detail')">مشاهده</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- TREPANG2 (مورد دوم) -->
                 <div class="game-card">
-                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture9_s5dw.png');">
-                        <span class="badge">تخفیف</span>
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/img_20260826_122838_603_c2d2.jpg');">
+                        <span class="badge">نسخه ویژه</span>
                     </div>
                     <div class="game-info">
-                        <h3 class="game-title">Among Us (امانگ اس)</h3>
-                        <p class="game-desc">فارسی‌ساز کامل گفتگوها، منوها و مأموریت‌های بازی امانگ اس.</p>
+                        <h3 class="game-title">TREPANG2</h3>
+                        <p class="game-desc">نسخه دوم پکیج زیرنویس و ترجمه اختصاصی Trepang2.</p>
                         <div class="price-row">
-                            <span class="price">۳۵,۰۰۰ تومان</span>
-                            <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود زیرنویس</button>
+                            <span class="price">۱۰۰,۰۰۰ تومان</span>
+                            <button class="buy-btn" onclick="showSection('trepang2-2-detail')">مشاهده</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ۴. بازی‌ها -->
         <section id="games" class="page-section">
             <h2 class="section-title">
                 <img src="https://s6.uupload.ir/files/file_000000003098821197bbae872d08be72_hx50.jpg" alt="بازی‌ها" class="title-icon-img">
@@ -596,18 +622,17 @@
             </div>
         </section>
 
+        <!-- ۵. صفحات جزئیات زیرنویس‌ها -->
         <section id="indika-detail" class="page-section">
             <div class="detail-container">
                 <div class="detail-header">
                     <h2 class="detail-title">زیرنویس فارسی بازی Indika (اینیدیکا)</h2>
                     <button class="back-link" onclick="showSection('subtitles')">← بازگشت به زیرنویس‌ها</button>
                 </div>
-
                 <div class="purchase-box">
-                    <div class="purchase-price">قیمت: ۸۵,۰۰۰ تومان</div>
-                    <button class="purchase-btn" onclick="alert('انتقال به درگاه پرداخت برای خرید زیرنویس Indika...')">خرید</button>
+                    <div class="purchase-price">قیمت: ۷۰,۰۰۰ تومان</div>
+                    <button class="purchase-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید</button>
                 </div>
-
                 <h3 class="sub-group-title">تصاویری از نمای بازی با زیرنویس اختصاصی</h3>
                 <div class="gallery-grid">
                     <img src="https://s6.uupload.ir/files/img_20260826_104920_470_4bhb.jpg" alt="Indika Gameplay 1" class="gallery-img">
@@ -615,6 +640,95 @@
                     <img src="https://s6.uupload.ir/files/img_20260826_104920_950_4wec.jpg" alt="Indika Gameplay 3" class="gallery-img">
                     <img src="https://s6.uupload.ir/files/img_20260826_104920_960_g2mq.jpg" alt="Indika Gameplay 4" class="gallery-img">
                     <img src="https://s6.uupload.ir/files/img_20260826_104921_136_zbhk.jpg" alt="Indika Gameplay 5" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="photomaly-detail" class="page-section">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h2 class="detail-title">زیرنویس فارسی پروژه PHOTOMALY</h2>
+                    <button class="back-link" onclick="showSection('subtitles')">← بازگشت به زیرنویس‌ها</button>
+                </div>
+                <div class="purchase-box">
+                    <div class="purchase-price">قیمت: ۴۰,۰۰۰ تومان</div>
+                    <button class="purchase-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید</button>
+                </div>
+                <h3 class="sub-group-title">تصاویری از نمای بازی با زیرنویس اختصاصی</h3>
+                <div class="gallery-grid">
+                    <img src="https://s6.uupload.ir/files/888888888888_gyt7.png" alt="PHOTOMALY Gameplay 1" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/ننننننننننننننننن_3o81.png" alt="PHOTOMALY Gameplay 2" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="yandere-detail" class="page-section">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h2 class="detail-title">زیرنویس فارسی بازی YANDERE</h2>
+                    <button class="back-link" onclick="showSection('subtitles')">← بازگشت به زیرنویس‌ها</button>
+                </div>
+                <div class="purchase-box">
+                    <div class="purchase-price">قیمت: ۸۰,۰۰۰ تومان</div>
+                    <button class="purchase-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید</button>
+                </div>
+                <h3 class="sub-group-title">تصاویری از نمای بازی با زیرنویس اختصاصی</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">برای این زیر نویس تصویری در نظر نگرفته است</p>
+            </div>
+        </section>
+
+        <section id="trepang2-1-detail" class="page-section">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h2 class="detail-title">زیرنویس فارسی بازی TREPANG2</h2>
+                    <button class="back-link" onclick="showSection('subtitles')">← بازگشت به زیرنویس‌ها</button>
+                </div>
+                <div class="purchase-box">
+                    <div class="purchase-price">قیمت: ۱۰۰,۰۰۰ تومان</div>
+                    <button class="purchase-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید</button>
+                </div>
+                <h3 class="sub-group-title">تصاویری از نمای بازی با زیرنویس اختصاصی</h3>
+                <div class="gallery-grid">
+                    <img src="https://s6.uupload.ir/files/img_20260826_122838_433_c4hu.jpg" alt="Trepang2 Gameplay" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="song-of-horror-detail" class="page-section">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h2 class="detail-title">زیرنویس فارسی بازی Song of horror</h2>
+                    <button class="back-link" onclick="showSection('subtitles')">← بازگشت به زیرنویس‌ها</button>
+                </div>
+                <div class="purchase-box">
+                    <div class="purchase-price">قیمت: ۱۰۰,۰۰۰ تومان</div>
+                    <button class="purchase-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید</button>
+                </div>
+                <h3 class="sub-group-title">تصاویری از نمای بازی با زیرنویس اختصاصی</h3>
+                <div class="gallery-grid">
+                    <img src="https://s6.uupload.ir/files/img_20260826_122624_771_oq5j.jpg" alt="Song of horror 1" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/img_20260826_122624_075_o0s.jpg" alt="Song of horror 2" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/img_20260826_122624_464_898c.jpg" alt="Song of horror 3" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/img_20260826_122624_547_lpfz.jpg" alt="Song of horror 4" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/img_20260826_122624_655_1wh.jpg" alt="Song of horror 5" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="trepang2-2-detail" class="page-section">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h2 class="detail-title">زیرنویس فارسی بازی TREPANG2 (نسخه دوم)</h2>
+                    <button class="back-link" onclick="showSection('subtitles')">← بازگشت به زیرنویس‌ها</button>
+                </div>
+                <div class="purchase-box">
+                    <div class="purchase-price">قیمت: ۱۰۰,۰۰۰ تومان</div>
+                    <button class="purchase-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید</button>
+                </div>
+                <h3 class="sub-group-title">تصاویری از نمای بازی با زیرنویس اختصاصی</h3>
+                <div class="gallery-grid">
+                    <img src="https://s6.uupload.ir/files/img_20260826_122838_817_(1)_jvxa.jpg" alt="Trepang2 2 Gameplay 1" class="gallery-img">
+                    <img src="https://s6.uupload.ir/files/img_20260826_122839_124_q1rv.jpg" alt="Trepang2 2 Gameplay 2" class="gallery-img">
                 </div>
             </div>
         </section>
