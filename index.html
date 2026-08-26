@@ -1,4 +1,4 @@
-html_content = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -45,6 +45,7 @@ html_content = '''<!DOCTYPE html>
             display: flex;
             align-items: center;
             gap: 1rem;
+            cursor: pointer;
         }
 
         .logo-icon {
@@ -56,8 +57,29 @@ html_content = '''<!DOCTYPE html>
             color: var(--accent-color);
         }
 
+        .nav-btns {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
         .search-bar {
-            width: 300px;
+            width: 250px;
             padding: 0.6rem 1rem;
             border-radius: 8px;
             border: 1px solid var(--border-color);
@@ -83,8 +105,78 @@ html_content = '''<!DOCTYPE html>
             margin-bottom: 1.5rem;
             border-right: 4px solid var(--accent-color);
             padding-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
+        .sub-group-title {
+            font-size: 1.1rem;
+            margin: 1.5rem 0 1rem 0;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* کارت‌های صفحه اصلی */
+        .home-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .category-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 12px 20px -5px rgba(56, 189, 248, 0.2);
+        }
+
+        /* استایل استیکرهای آیکون با حذف پس‌زمینه سفید */
+        .category-icon-img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            mix-blend-mode: multiply;
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .title-icon-img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            filter: brightness(1.1) contrast(1.1);
+            vertical-align: middle;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* گرید بازی‌ها و زیرنویس‌ها */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -179,6 +271,15 @@ html_content = '''<!DOCTYPE html>
             background-color: var(--accent-hover);
         }
 
+        /* مخفی کردن صفحات در حالت عادی */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
         footer {
             background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
@@ -193,90 +294,294 @@ html_content = '''<!DOCTYPE html>
 <body>
 
     <header>
-        <div class="logo-title">
+        <div class="logo-title" onclick="showSection('home')">
             <span class="logo-icon">🎮</span>
             <h1>DarkroomStudio</h1>
         </div>
-        <input type="text" class="search-bar" placeholder="جستجوی زیرنویس بازی...">
+        <div class="nav-btns">
+            <button class="nav-btn" onclick="showSection('home')">صفحه اصلی</button>
+            <input type="text" id="searchInput" class="search-bar" placeholder="جستجوی بازی یا زیرنویس..." oninput="filterGames()">
+        </div>
     </header>
 
     <main>
-        <h2 class="section-title">جدیدترین زیرنویس‌ها</h2>
-        
-        <div class="games-grid">
+        <!-- ۱. بخش صفحه اصلی (خانه) -->
+        <section id="home" class="page-section active">
+            <h2 class="section-title">به DarkroomStudio خوش آمدید</h2>
+            <div class="home-categories">
+                <div class="category-card" onclick="showSection('subtitles')">
+                    <img src="https://s6.uupload.ir/files/capture80_82u0.png" alt="آیکون زیرنویس" class="category-icon-img">
+                    <div class="category-title">زیرنویس‌ها</div>
+                    <div class="category-desc">مشاهده و دانلود جدیدترین زیرنویس‌ها و فارسی‌سازهای بازی‌ها</div>
+                </div>
+                <div class="category-card" onclick="showSection('games')">
+                    <img src="https://s6.uupload.ir/files/capture90_iot4.png" alt="آیکون بازی‌ها" class="category-icon-img">
+                    <div class="category-title">بازی‌ها</div>
+                    <div class="category-desc">مشاهده لیست بازی‌های پشتیبانی شده و آیتم‌های مربوطه</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ۲. بخش نتایج عمومی جستجو (مخصوص سرچ از خانه) -->
+        <section id="search-results" class="page-section">
+            <h2 class="section-title">نتایج جستجو</h2>
             
-            <!-- Game 1: GTA VI -->
-            <div class="game-card">
-                <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eee6371bd0.jpg');">
-                    <span class="badge">پیش‌خرید</span>
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">GTA VI</h3>
-                    <p class="game-desc">پیش‌خرید زیرنویس کامل بازی Grand Theft Auto VI همراه با ترجمه منوها و دیالوگ‌ها.</p>
-                    <div class="price-row">
-                        <span class="price">۱۵۰,۰۰۰ تومان</span>
-                        <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود</button>
+            <h3 class="sub-group-title" id="searchSubTitle">
+                <img src="https://s6.uupload.ir/files/capture80_82u0.png" alt="زیرنویس" class="title-icon-img">
+                بخش زیرنویس‌ها
+            </h3>
+            <div class="games-grid" id="searchSubGrid"></div>
+
+            <h3 class="sub-group-title" id="searchGamesTitle">
+                <img src="https://s6.uupload.ir/files/capture90_iot4.png" alt="بازی‌ها" class="title-icon-img">
+                بخش بازی‌ها
+            </h3>
+            <div class="games-grid" id="searchGamesGrid"></div>
+
+            <p id="noResults" style="display: none; color: var(--text-muted); margin-top: 1rem;">هیچ موردی مطابق با جستجوی شما پیدا نشد.</p>
+        </section>
+
+        <!-- ۳. بخش زیرنویس‌ها -->
+        <section id="subtitles" class="page-section">
+            <h2 class="section-title">
+                <img src="https://s6.uupload.ir/files/capture80_82u0.png" alt="زیرنویس" class="title-icon-img">
+                جدیدترین زیرنویس‌ها
+            </h2>
+            <div class="games-grid" id="subtitlesGrid">
+                
+                <!-- Game 1: GTA VI -->
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture3_v9qb.png');">
+                        <span class="badge">پیش‌خرید</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">GTA VI (جی تی ای ۶)</h3>
+                        <p class="game-desc">پیش‌خرید زیرنویس کامل بازی Grand Theft Auto VI همراه با ترجمه منوها و دیالوگ‌ها.</p>
+                        <div class="price-row">
+                            <span class="price">۱۵۰,۰۰۰ تومان</span>
+                            <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود زیرنویس</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Game 2: Minecraft -->
-            <div class="game-card">
-                <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://media.rawg.io/media/games/b4e/b4e4c73d5aa4ec66bbf75375c4847a2b.jpg');">
-                    <span class="badge">کامل</span>
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">Minecraft</h3>
-                    <p class="game-desc">فارسی‌ساز کامل آیتم‌ها، منوها و تمام بخش‌های بازی ماینکرفت.</p>
-                    <div class="price-row">
-                        <span class="price">۴۵,۰۰۰ تومان</span>
-                        <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود</button>
+                <!-- Game 2: Minecraft Subtitle -->
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture12_71u5.png');">
+                        <span class="badge">کامل</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Minecraft (ماینکرفت)</h3>
+                        <p class="game-desc">فارسی‌ساز کامل آیتم‌ها، منوها و تمام بخش‌های بازی ماینکرفت.</p>
+                        <div class="price-row">
+                            <span class="price">۴۵,۰۰۰ تومان</span>
+                            <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود زیرنویس</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Game 3: Roblox -->
-            <div class="game-card">
-                <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://media.rawg.io/media/games/a73/a732009219e590fa4967d94f26388430.jpg');">
-                    <span class="badge">VIP</span>
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">Roblox</h3>
-                    <p class="game-desc">ترجمه و زیرنویس اختصاصی مپ‌های محبوب و پرطرفدار روبلاکس.</p>
-                    <div class="price-row">
-                        <span class="price">۶۰,۰۰۰ تومان</span>
-                        <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود</button>
+                <!-- Game 3: Roblox Subtitle -->
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture5_4wvx.png');">
+                        <span class="badge">VIP</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Roblox (روبلاکس)</h3>
+                        <p class="game-desc">ترجمه و زیرنویس اختصاصی مپ‌های محبوب و پرطرفدار روبلاکس.</p>
+                        <div class="price-row">
+                            <span class="price">۶۰,۰۰۰ تومان</span>
+                            <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود زیرنویس</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Game 4: Among Us -->
-            <div class="game-card">
-                <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://media.rawg.io/media/games/e74/e74458058b35e0f08aed362e1fda3ed5.jpg');">
-                    <span class="badge">تخفیف</span>
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">Among Us</h3>
-                    <p class="game-desc">فارسی‌ساز کامل گفتگوها، منوها و مأموریت‌های بازی امانگ اس.</p>
-                    <div class="price-row">
-                        <span class="price">۳۵,۰۰۰ تومان</span>
-                        <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود</button>
+                <!-- Game 4: Among Us Subtitle -->
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture9_s5dw.png');">
+                        <span class="badge">تخفیف</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Among Us (امانگ اس)</h3>
+                        <p class="game-desc">فارسی‌ساز کامل گفتگوها، منوها و مأموریت‌های بازی امانگ اس.</p>
+                        <div class="price-row">
+                            <span class="price">۳۵,۰۰۰ تومان</span>
+                            <button class="buy-btn" onclick="alert('انتقال به درگاه پرداخت...')">خرید و دانلود زیرنویس</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        </section>
+
+        <!-- ۴. بخش بازی‌ها -->
+        <section id="games" class="page-section">
+            <h2 class="section-title">
+                <img src="https://s6.uupload.ir/files/capture90_iot4.png" alt="بازی‌ها" class="title-icon-img">
+                لیست بازی‌ها
+            </h2>
+            <div class="games-grid" id="gamesGrid">
+                
+                <!-- Game 1: GTA VI -->
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture8_ur52.png');">
+                        <span class="badge">موجود</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">GTA VI (جی تی ای ۶)</h3>
+                        <p class="game-desc">نسخه اصلی و دیتای بازی Grand Theft Auto VI.</p>
+                        <div class="price-row">
+                            <span class="price">رایگان / اشتراکی</span>
+                            <button class="buy-btn" onclick="alert('دانلود دیتای بازی...')">دانلود بازی</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 2: Minecraft Game -->
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture6_phru.png');">
+                        <span class="badge">موجود</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Minecraft (ماینکرفت)</h3>
+                        <p class="game-desc">نسخه کامل بازی ماینکرفت به همراه آخرین آپدیت‌ها.</p>
+                        <div class="price-row">
+                            <span class="price">رایگان</span>
+                            <button class="buy-btn" onclick="alert('دانلود بازی ماینکرفت...')">دانلود بازی</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 3: Roblox Game -->
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/capture7_du4w.png');">
+                        <span class="badge">موجود</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Roblox (روبلاکس)</h3>
+                        <p class="game-desc">لانچر رسمی و فایل‌های نصبی بازی روبلاکس.</p>
+                        <div class="price-row">
+                            <span class="price">رایگان</span>
+                            <button class="buy-btn" onclick="alert('دانلود لانچر روبلاکس...')">دانلود بازی</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 4: Among Us Game -->
+                <div class="game-card">
+                    <div class="game-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://s6.uupload.ir/files/امانگ_اس_x7o0.png');">
+                        <span class="badge">موجود</span>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Among Us (امانگ اس)</h3>
+                        <p class="game-desc">نسخه کامل و آنلاک‌شده بازی امانگ اس برای کامپیوتر.</p>
+                        <div class="price-row">
+                            <span class="price">رایگان</span>
+                            <button class="buy-btn" onclick="alert('دانلود بازی امانگ اس...')">دانلود بازی</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </main>
 
     <footer>
         <p>© DarkroomStudio - کلیه حقوق برای DarkroomStudio محفوظ است.</p>
     </footer>
 
+    <script>
+        let currentSection = 'home';
+
+        function showSection(sectionId) {
+            currentSection = sectionId;
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+
+            // پاک‌سازی سرچ و نشان دادن تمام کارت‌ها موقع تعویض منو
+            document.getElementById('searchInput').value = '';
+            resetFilters();
+        }
+
+        function resetFilters() {
+            const cards = document.querySelectorAll('.game-card');
+            cards.forEach(card => card.style.display = 'flex');
+        }
+
+        function filterGames() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+
+            // ۱. اگر متن جستجو خالی شد
+            if (query === "") {
+                if (currentSection === 'search-results') {
+                    showSection('home');
+                } else {
+                    resetFilters();
+                }
+                return;
+            }
+
+            // ۲. اگر از صفحه اصلی یا نتایج سرچ اقدام به تایپ کرد
+            if (currentSection === 'home' || currentSection === 'search-results') {
+                if (currentSection !== 'search-results') {
+                    const sections = document.querySelectorAll('.page-section');
+                    sections.forEach(section => section.classList.remove('active'));
+                    document.getElementById('search-results').classList.add('active');
+                    currentSection = 'search-results';
+                }
+
+                const searchSubGrid = document.getElementById('searchSubGrid');
+                const searchGamesGrid = document.getElementById('searchGamesGrid');
+                
+                searchSubGrid.innerHTML = '';
+                searchGamesGrid.innerHTML = '';
+
+                // فیلتر و افزودن نتایج به بخش زیرنویس‌ها
+                const subCards = document.querySelectorAll('#subtitlesGrid .game-card');
+                let hasSub = false;
+                subCards.forEach(card => {
+                    const title = card.querySelector('.game-title').textContent.toLowerCase();
+                    const desc = card.querySelector('.game-desc').textContent.toLowerCase();
+                    if (title.includes(query) || desc.includes(query)) {
+                        searchSubGrid.appendChild(card.cloneNode(true));
+                        hasSub = true;
+                    }
+                });
+
+                // فیلتر و افزودن نتایج به بخش بازی‌ها
+                const gameCards = document.querySelectorAll('#gamesGrid .game-card');
+                let hasGame = false;
+                gameCards.forEach(card => {
+                    const title = card.querySelector('.game-title').textContent.toLowerCase();
+                    const desc = card.querySelector('.game-desc').textContent.toLowerCase();
+                    if (title.includes(query) || desc.includes(query)) {
+                        searchGamesGrid.appendChild(card.cloneNode(true));
+                        hasGame = true;
+                    }
+                });
+
+                document.getElementById('searchSubTitle').style.display = hasSub ? 'flex' : 'none';
+                document.getElementById('searchGamesTitle').style.display = hasGame ? 'flex' : 'none';
+                document.getElementById('noResults').style.display = (!hasSub && !hasGame) ? 'block' : 'none';
+            } 
+            // ۳. اگر توی بخش اختصاصی «زیرنویس‌ها» بود
+            else if (currentSection === 'subtitles') {
+                const cards = document.querySelectorAll('#subtitlesGrid .game-card');
+                cards.forEach(card => {
+                    const title = card.querySelector('.game-title').textContent.toLowerCase();
+                    const desc = card.querySelector('.game-desc').textContent.toLowerCase();
+                    card.style.display = (title.includes(query) || desc.includes(query)) ? 'flex' : 'none';
+                });
+            } 
+            // ۴. اگر توی بخش اختصاصی «بازی‌ها» بود
+            else if (currentSection === 'games') {
+                const cards = document.querySelectorAll('#gamesGrid .game-card');
+                cards.forEach(card => {
+                    const title = card.querySelector('.game-title').textContent.toLowerCase();
+                    const desc = card.querySelector('.game-desc').textContent.toLowerCase();
+                    card.style.display = (title.includes(query) || desc.includes(query)) ? 'flex' : 'none';
+                });
+            }
+        }
+    </script>
 </body>
 </html>
-'''
-
-with open("index_gaming_images.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print("تصاویر اصلی بازی‌ها جایگزین شد.")
